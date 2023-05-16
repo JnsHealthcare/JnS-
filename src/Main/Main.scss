@@ -16,7 +16,7 @@
     }
 
     .loginLinkStyle {
-      color: $mainBrandBlue;
+      color: white;
       font-weight: bold;
       text-decoration: none;
     }
@@ -51,14 +51,14 @@
       }
     }
     .promoImageBox {
-      display: flex;
-      justify-content: space-between;
-      width: 87vw;
-      height: 80vh;
+      // display: flex;
+      // justify-content: space-between;
+      width: 100%;
+      height: 40%;
       margin-bottom: 60px;
 
       .promoImageBoxEach {
-        width: 49%;
+        // width: 49%;
         height: 100%;
 
         .promoImage {
@@ -71,10 +71,10 @@
   }
 
   .textPromoBox {
-    width: 87vw;
+    // width: 87vw;
     padding: 5%;
     padding-right: 40%;
-    background-color: #007b41;
+    background-color: gray;
 
     .textPromoMainText {
       margin-bottom: 10px;

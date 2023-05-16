@@ -13,33 +13,34 @@ const Main = () => {
           <Link to="/login" className="loginLinkStyle">
             semmelweis
           </Link>
-          에 가입하여 다양한 홈퍼니싱 영감과 할인 혜택, 리워드를 받아보세요.
         </div>
       </div>
       <div className="mainPromoStyle">
         <div className="mainPromoTitle">
-          올 겨울, 더 따듯한 우리집을 위해 최대 70% 할인
+          디자인 과 기능 두마리 토끼를 다잡은 거꾸리
         </div>
         <div className="mainPromoSubTextBox">
           <div className="mainPromoTextStyle">
-            다가오는 연말연시를 맞아 더 낮은 가격의 홈퍼니싱 제품으로 사랑하는
-            사람과 함께 따뜻한 겨울을 준비하세요. 11월 20일 부터 1월 28일까지
+            런칭이 다가오는 제넬 바이슨 거꾸리 와 함께하세요.
           </div>
-          <button className="promoButtonStyle">
-            최대 70% 겨울세일 보러 가기
-          </button>
+          <button className="promoButtonStyle">최대 70% 런칭 세일</button>
         </div>
         <div className="promoImageBox">
           <div className="promoImageBoxEach">
-            <Link to="/promotion">
-              <img
-                className="promoImage"
-                alt="promoImage"
-                src="./images/Main/mainPromo1.jpg"
-              />
+            <Link to="/main">
+              <video
+                className=""
+                src={`${process.env.PUBLIC_URL}/imges/video.map4`}
+              >
+                {/* <source
+                  //   src={`${process.env.PUBLIC_URL}/imges/vedio.map4`}
+                  src="../../public/imges/video.mp4"
+                  type="video/mp4"
+                /> */}
+              </video>
             </Link>
           </div>
-          <div className="promoImageBoxEach">
+          {/* <div className="promoImageBoxEach">
             <Link to="/promotion">
               <img
                 className="promoImage"
@@ -47,11 +48,11 @@ const Main = () => {
                 src="./images/Main/mainPromo2.jpg"
               />
             </Link>
-          </div>
+          </div> */}
         </div>
         <div className="textPromoBox">
           <div className="textPromoMainText">
-            매일 환상적인 크리스마스 마법이 펼쳐지는 집
+            인테리어 와 어울리는 거꾸리 제넬바이슨
           </div>
           <div className="textPromoSubText">
             척추 질환 거꾸리의 새로운 등장 사전예약으로 50% 세일 사전예약하세요
