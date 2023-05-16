@@ -1,0 +1,183 @@
+// @import '../../styles/mixin';
+// @import '../../styles/variables'
+@import '../styles/mixin.scss';
+@import '../styles/variable.scss';
+
+.login {
+  display: flex;
+
+  .titleBox {
+    width: 40%;
+    padding: 32px 80px;
+    background-color: $mainBrandBlue;
+
+    .titleUseBox {
+      @include flex(column, null, space-between);
+      height: 100%;
+      margin: 0 auto;
+
+      .titleUseBoxWrapper {
+        position: relative;
+
+        .logoBox {
+          width: 90px;
+          height: 36px;
+          object-fit: cover;
+        }
+
+        .logoIcon {
+          position: absolute;
+          top: 0;
+          left: -50px;
+          transform: translateY(50%);
+        }
+      }
+
+      .textBox {
+        font-size: 25px;
+      }
+    }
+
+    .textBoxTitle {
+      position: relative;
+      width: 100%;
+      margin-bottom: 10px;
+      color: #ffff;
+
+      .title {
+        margin-top: 16px;
+        color: $mainBrandYellow;
+        font-size: 34px;
+        font-weight: 700;
+      }
+
+      .titleText {
+        margin: 16px 0;
+        font-size: 16px;
+        line-height: 20px;
+      }
+    }
+
+    .article {
+      display: flex;
+      flex-direction: column;
+      color: #fff;
+      font-size: 12px;
+      line-height: 1.7;
+
+      .underline {
+        text-decoration: underline;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .loginBox {
+    width: 60%;
+    height: 100vh;
+    @include flex(flex-start, center, row);
+    padding: 32px 80px;
+
+    & div {
+      margin-bottom: 40px;
+    }
+
+    .inputForm {
+      width: 448px;
+
+      .loginInput {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .lineInput {
+        margin-bottom: 10px;
+      }
+
+      .inputId {
+        height: 50px;
+        padding-left: 1rem;
+        border: 1px solid #000000;
+        border-radius: 5px;
+        font-size: 1rem;
+
+        &:hover {
+          border-width: 3px;
+        }
+      }
+      .inputDisabled {
+        border-color: red;
+      }
+      .noneTitle {
+        margin-top: 4px;
+        color: red;
+        font-size: 14px;
+      }
+
+      .inputPassword {
+        width: 100%;
+        height: 50px;
+        margin-bottom: 5px;
+        padding-left: 1rem;
+        border: 1px solid #000000;
+        border-radius: 5px;
+
+        &:hover {
+          border-width: 3px;
+        }
+      }
+      .inputFail {
+        border-color: red;
+      }
+
+      .loginBtn {
+        width: 100%;
+        height: 60px;
+        margin-bottom: 40px;
+        border-radius: 70px;
+        background-color: $mainBrandBlue;
+        color: #ffffff;
+        font-size: 0.95rem;
+        font-weight: 800;
+
+        &:hover {
+          background-color: $mainBrandBlueHover;
+        }
+      }
+
+      .joinBtn {
+        width: 100%;
+        height: 60px;
+        border: 1px solid #000;
+        border-radius: 40px;
+        background-color: transparent;
+
+        &:hover {
+          border-width: 3px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .titleBox {
+    width: 100%;
+  }
+
+  .login {
+    flex-direction: column;
+  }
+  .textBox {
+    width: 100vw;
+    margin: 0 30px 0 30px;
+  }
+  .loginRbox {
+    width: auto;
+  }
+  .textBoxTitle {
+    height: auto;
+    margin: 0;
+    margin-top: 0;
+  }
+}

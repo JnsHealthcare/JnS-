@@ -4,8 +4,4 @@ import { ThemeProvider } from 'styled-components';
 import Router from './Router';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <ThemeProvider>
-    <Router />
-  </ThemeProvider>
-);
+root.render(<Router />);
