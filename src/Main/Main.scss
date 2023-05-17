@@ -2,9 +2,12 @@
 @import '../styles/variable.scss';
 
 .main {
-  display: flex;
-  flex-direction: column;
-  margin: 3% 3% 6% 9%;
+  // display: flex;
+  // flex-direction: column;
+  // margin: 3% 3% 6% 9%;
+  .logo {
+    font-size: 30px;
+  }
 
   .mainTitleBoxStyle {
     margin-bottom: 50px;
@@ -50,6 +53,27 @@
         font-weight: bold;
       }
     }
+    .dropdownContent {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 10px;
+    }
+
+    .dropdownContent input {
+      width: 200px;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+
+    .subscribe {
+      background-color: #4caf50;
+      color: white;
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
     .promoImageBox {
       // display: flex;
       // justify-content: space-between;
@@ -70,31 +94,42 @@
     }
   }
 
-  .textPromoBox {
-    // width: 87vw;
-    padding: 5%;
-    padding-right: 40%;
-    background-color: gray;
+  // .TotalTextPormo {
+  //   width: 100%;
+  //   background-color: #808080;
+  //   height: 400px;
+  //   display: flex;
+  //   justify-content: space-between;
 
-    .textPromoMainText {
-      margin-bottom: 10px;
-      color: white;
-      font-size: 23px;
-      font-weight: bold;
-    }
-    .textPromoSubText {
-      margin-bottom: 40px;
-      color: white;
-      font-size: 14px;
-      line-height: 160%;
-    }
-    .textPromoButton {
+  .inputBox {
+    width: 200px;
+    height: 380px;
+    border: 1px solid #808080;
+    padding: 10px;
+
+    .NameBox {
       width: 200px;
-      height: 40px;
-      border: none;
+      height: 50px;
       border-radius: 70px;
-      background-color: #ffffff;
-      font-weight: bold;
+      border: none;
+      margin-bottom: 10px;
+    }
+    .TelBox {
+      width: 200px;
+      height: 50px;
+      border-radius: 70px;
+      border: none;
+      margin-bottom: 10px;
+    }
+    .subscrib {
+      width: 200px;
+      height: 50px;
+      border-radius: 70px;
+      border: none;
+    }
+    .imgBox .img {
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
     }
   }
+  // }
 }

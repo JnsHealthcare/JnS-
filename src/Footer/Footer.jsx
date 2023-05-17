@@ -13,23 +13,23 @@ const Footer = () => {
 
   return (
     <footer className="footer">
-      <section className="footerMainRow">
-        <div className="footerSignUp">
-          <h3 className="listTitle">SIMS Family</h3>
-          {/* <p className="footerSignUpText">
+      {/* <section className="footerMainRow"> */}
+      {/* <div className="footerSignUp"> */}
+      <h3 className="listTitle">(주) 지넬 바이스</h3>
+      {/* <p className="footerSignUpText">
             지금 SIMS Family에 무료로 가입하고
             <br />
             다양한 멤버 전용 혜택을 누리세요.
           </p> */}
-          <p className="detailLink">
+      {/* <p className="detailLink">
             <Link to="#">자세히 보기</Link>
           </p>
           <Link className="footerLinkButton" to="/signup">
             (주) 저넬 바이스
-          </Link>
-        </div>
+          </Link> */}
+      {/* </div> */}
 
-        {/* {FOOTER_DATA.map((footerData) => {
+      {/* {FOOTER_DATA.map((footerData) => {
           return (
             <ul className="footerColumnList" key={footerData.id}>
               <h3 className="listTitle">{footerData.title}</h3>
@@ -43,9 +43,9 @@ const Footer = () => {
             </ul>
           );
         })} */}
-      </section>
+      {/* </section> */}
 
-      <section className="footerCopyRightRow">
+      {/* <section className="footerCopyRightRow">
         <p className="copyRightText">© Inter Sims Systems B.V 1999-2022</p>
         <ul className="footerCopyRightLists">
           {FOOTER_COPYRIGHT.map((list) => {
@@ -56,8 +56,7 @@ const Footer = () => {
             );
           })}
         </ul>
-      </section>
-
+      </section> */}
       <section className="footerInformationRow">
         <p>
           (주)저넬 바이스
