@@ -41,19 +41,21 @@ const CategoryCarousel = () => {
         {/* </button> */}
         <div className="categoryCarouselContainer">
           <div className="imageContainer" ref={carouselRef}>
-            {CAROUSEL_LIST.map((data) => {
-              return (
-                <div key={data.id} className="imageBoxEach">
-                  <img
-                    className="carouselImageStyle"
-                    src={data.src}
-                    alt={data.alt}
-                  />
-                  <button className="imageLinkButton">{data.btnText}</button>
-                  {/* <h>거꾸리에 대한 설명 불라불라불라</h> */}
-                </div>
-              );
-            })}
+            {/* {CAROUSEL_LIST.map((data) => { */}
+            {/* return (<div key={data.id} className="imageBoxEach"> */}
+            <div className="imageBoxEach">
+              <img
+                className="carouselImageStyle"
+                src={`${process.env.PUBLIC_URL}/images/Lime.png`}
+                // src="https://picsum.photos/600"
+                alt="img"
+              />
+              {/* <button className="imageLinkButton">{data.btnText}</button> */}
+              <button className="imageLinkButton">Lime</button>
+              {/* <h>거꾸리에 대한 설명 불라불라불라</h> */}
+            </div>
+            {/* ); */}
+            {/* })} */}
             <h>거꾸리의 대한 설명</h>
           </div>
         </div>
@@ -67,7 +69,7 @@ export default CategoryCarousel;
 const CAROUSEL_LIST = [
   {
     id: 1,
-    src: 'https://picsum.photos/300',
+    src: '../../public/images/Lime.png',
     alt: 'carouselImage',
     btnText: 'Lime',
   },

@@ -9,6 +9,12 @@ const Main = () => {
   const [inputValue, setInputValue] = useState('');
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
+  const [rotationY, setRotationY] = useState(0);
+
+  const handleImageClick = () => {
+    setRotationY(rotationY + 90);
+  };
+
   const handleDropdownToggle = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
@@ -29,8 +35,9 @@ const Main = () => {
         </div>
         <header>
           <div className="logo">Semmelweis</div>
-          <ul className="nav-links">
-            <li>
+          <h className="nav-links">
+            <p className="shoptitle">Shop</p>
+            {/* <li>
               <a href="#">Home</a>
             </li>
             <li>
@@ -41,8 +48,8 @@ const Main = () => {
             </li>
             <li>
               <a href="#">Contact</a>
-            </li>
-          </ul>
+            </li> */}
+          </h>
           <div className="burger">
             <div className="line1"></div>
             <div className="line2"></div>
@@ -70,7 +77,7 @@ const Main = () => {
         </div>
         </div> */}
         <article>
-          <div className="promoButtonStyle" onClick={handleDropdownToggle}>
+          {/* <div className="promoButtonStyle" onClick={handleDropdownToggle}>
             사전예약하기
           </div>
           {isDropdownOpen && (
@@ -87,17 +94,30 @@ const Main = () => {
               />
               <button className="subscribe">예약 완료</button>
             </div>
-          )}
-          <div className="imgBox">
-            {/* <img
-              src="https://picsum.photos/600"
+          )} */}
+          <div className="imgBox" onClick={handleImageClick}>
+            <img
+              src={`${process.env.PUBLIC_URL}/images/Lime.png`}
               alt="img"
-              width="100%"
-              height="400px"
-              box-shadow="0 0 20px rgba(0, 0, 0, 0.5)"
-            /> */}
+              style={{
+                width: '100%',
+                height: '800px',
+                transform: isDropdownOpen ? 'rotate(360deg)' : 'none',
+                transition: 'transform 1s',
+              }}
+              rotationY={rotationY}
+            />
           </div>
         </article>
+
+        <section className="video-section">
+          <video
+            src={`${process.env.PUBLIC_URL}/images/video.mp4`}
+            autoplay
+            loop
+            controls
+          ></video>
+        </section>
       </div>
       <CategoryCarousel />
       {/* <EventCarousel /> */}

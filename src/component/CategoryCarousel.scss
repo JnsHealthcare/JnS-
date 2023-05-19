@@ -56,9 +56,11 @@
       }
 
       .imageContainer {
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
         display: flex;
-        flex-wrap: nowrap;
-        justify-content: flex-start;
+        justify-content: center;
+        // flex-wrap: nowrap;
+        // justify-content: flex-start;
         width: 87vw;
         height: 360px;
         gap: 20px;
@@ -69,7 +71,7 @@
           .carouselImageStyle {
             width: 247px;
             height: 320px;
-            object-fit: cover;
+            // object-fit: cover;
           }
 
           .imageLinkButton {

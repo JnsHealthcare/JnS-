@@ -9,7 +9,9 @@
   .titleBox {
     width: 40%;
     padding: 32px 80px;
-    background-color: $mainBrandBlue;
+    background-color: rgb(52, 51, 51);
+    // box-shadow: ;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
 
     .titleUseBox {
       @include flex(column, null, space-between);
@@ -77,6 +79,7 @@
     height: 100vh;
     @include flex(flex-start, center, row);
     padding: 32px 80px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
 
     & div {
       margin-bottom: 40px;
@@ -100,6 +103,7 @@
         border: 1px solid #000000;
         border-radius: 5px;
         font-size: 1rem;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
 
         &:hover {
           border-width: 3px;
@@ -121,6 +125,7 @@
         padding-left: 1rem;
         border: 1px solid #000000;
         border-radius: 5px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
 
         &:hover {
           border-width: 3px;
@@ -135,13 +140,14 @@
         height: 60px;
         margin-bottom: 40px;
         border-radius: 70px;
-        background-color: $mainBrandBlue;
+        background-color: rgb(52, 51, 51);
         color: #ffffff;
         font-size: 0.95rem;
         font-weight: 800;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
 
         &:hover {
-          background-color: $mainBrandBlueHover;
+          background-color: rgba(56, 52, 52, 0.612);
         }
       }
 
@@ -151,6 +157,7 @@
         border: 1px solid #000;
         border-radius: 40px;
         background-color: transparent;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
 
         &:hover {
           border-width: 3px;

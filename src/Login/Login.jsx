@@ -66,23 +66,23 @@ const Login = () => {
           </div>
 
           <div className="textBoxTitle">
-            <h1 className="title">로그인</h1>
-            <p className="titleText">
+            {/* <h1 className="title">로그인</h1> */}
+            {/* <p className="titleText">
               외워야 할 비밀번호가 많아 불편하셨죠?
               <br />
               이제 일회용 코드를 이용하여 간편하게 로그인하세요.
               <br />
               <br />
               *이메일 또는 전화번호 최초 인증 후 사용 가능
-            </p>
+            </p> */}
           </div>
-          <p className="article">
+          {/* <p className="article">
             <span>
               semmelweis
               <span className="underline"> 쿠키 정책, 개인정보처리방침</span>
             </span>
             <span>© Inter semmelweis Systems 042-545-4548</span>
-          </p>
+          </p> */}
         </div>
       </div>
       <div className="loginBox">

@@ -12,7 +12,7 @@ header {
   background-image: url('https://picsum.photos/600');
   background-size: cover;
   background-position: center;
-  height: 500px;
+  height: 710px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -21,7 +21,7 @@ header {
   color: white;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
   gap: 10px;
-  margin-bottom: 30px;
+  /* margin-bottom: 30px; */
 }
 
 nav {
@@ -30,11 +30,10 @@ nav {
   align-items: center; */
   padding: 20px;
   box-shadow: 0 0 20px rgba(77, 77, 77, 0.5);
-  border: none;
 }
 
-article {
-  background-image: url('https://picsum.photos/600');
+.article {
+  background-image: url('../../.././jns-medi/public/images/Lime.png');
   background-size: cover;
   background-position: center;
   height: 500px;
@@ -46,4 +45,17 @@ article {
   color: white;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
   gap: 10px;
+}
+
+.rotate {
+  animation: rotate 1s linear infinite;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

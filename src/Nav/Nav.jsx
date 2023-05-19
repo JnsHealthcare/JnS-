@@ -1,12 +1,14 @@
-// TODO : 검색 결과없을경우 메세지 출력, 검색 결과 최대갯수 제한, 검색결과 모달창 클릭해도 box-shadow 안사라지게
-
 import React, { useState, useRef, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faBars,
+  faUser,
+  faCartShopping,
+  faCamera,
+  faSearch,
+} from '@fortawesome/free-solid-svg-icons';
 import SideModal from '../SideModal/SideModal';
-import { faUser } from '@fortawesome/free-solid-svg-icons';
-// import NavSearchList from './NavSearchList';
-import useOnOutSideClick from '../hook/useOnOutSideClick';
 import NavModal from '../NavModal/NavModal';
 import './nav.scss';
 
@@ -31,8 +33,6 @@ const Nav = () => {
     setNavModal(!navModal);
   };
 
-  useOnOutSideClick(ref, () => setIsClicked(false));
-
   const onChangeInputHandler = (e) => {
     setSearchInput(e.target.value);
   };
@@ -41,21 +41,16 @@ const Nav = () => {
     setIsFocus(!isFocus);
   };
 
-  const searchResult = itemsData.map(({ name, id }) => {
-    if (searchInput.length > 0 && name.toLowerCase().includes(searchInput)) {
-      return (
-        <li className="navSearchResult" key={id}>
-          <FontAwesomeIcon
-            className="fontawesome"
-            icon="fa-solid fa-magnifying-glass"
-          />
-          <span className="searchResultText">{name}</span>
-        </li>
-      );
-    }
-  });
-
-  useOnOutSideClick(ref, () => setIsClicked(false));
+  const searchResult = itemsData
+    .filter(({ name }) =>
+      name.toLowerCase().includes(searchInput.toLowerCase())
+    )
+    .map(({ name, id }) => (
+      <li className="navSearchResult" key={id}>
+        <FontAwesomeIcon className="fontawesome" icon={faSearch} />
+        <span className="searchResultText">{name}</span>
+      </li>
+    ));
 
   useEffect(() => {
     fetch('/data/searchMockData.json', {
@@ -67,148 +62,127 @@ const Nav = () => {
       });
   }, []);
 
-  if (isHideNav) return;
+  if (isHideNav) return null;
 
   return (
     <nav className="nav">
       <span className="navButton">
-        <FontAwesomeIcon
+        {/* <FontAwesomeIcon
           className="fontawesome"
-          icon="fa-solid fa-bars"
+          icon={faBars}
           size="lg"
           onClick={onClickHandler}
-        />
-        <div>
-          {navModal ? (
-            <div className="modal">
-              <span className="navIconsUser" onClick={onClickHandler}>
-                <FontAwesomeIcon
-                  className="fontawesome"
-                  icon={faUser}
-                  size="lg"
-                />
-                <span>메뉴</span>
-              </span>
-              {/* 모달 내용 */}
-              <div className="modalContent">{/* 내용 추가 */}</div>
-            </div>
-          ) : (
-            <span className="navIconsUser" onClick={onClickHandler}>
-              메뉴
-            </span>
-          )}
-        </div>
+        /> */}
       </span>
       <div className="navContainer">
         <div className="navSearch">
           <div className="navSearchIconLeft">
-            <FontAwesomeIcon
+            <div>
+              {navModal ? (
+                <div className="modal">
+                  <span className="navIconsUser" onClick={onClickHandler}>
+                    <FontAwesomeIcon
+                      className="fontawesome"
+                      icon={faUser}
+                      size="lg"
+                    />
+                    {/* <span>메뉴</span> */}
+                  </span>
+                  {/* 모달 내용 */}
+                  <div className="modalContent">{/* 내용 추가 */}</div>
+                </div>
+              ) : (
+                <FontAwesomeIcon
+                  className="fontawesome"
+                  icon={faBars}
+                  size="lg"
+                  onClick={onClickHandler}
+                />
+              )}
+            </div>
+            {/* <FontAwesomeIcon
               className="fontawesome"
-              icon="fa-solid fa-magnifying-glass"
+              icon={faSearch}
               size="lg"
-            />
+            /> */}
           </div>
-          <Link to="/login">
+          {/* <Link to="/login"> */}
+          <div className="fontName">
             <span className="navIconsUser">
-              <FontAwesomeIcon
+              {/* <FontAwesomeIcon
                 className="fontawesome"
-                icon="fa-solid fa-user"
+                icon={faUser}
                 size="lg"
-              />
+              /> */}
               <span>Lime story</span>
             </span>
-          </Link>
-          <Link to="/login">
+            {/* </Link> */}
+            {/* <Link to="/login"> */}
             <span className="navIconsUser">
-              <FontAwesomeIcon
+              {/* <FontAwesomeIcon
                 className="fontawesome"
-                icon="fa-solid fa-user"
+                icon={faUser}
                 size="lg"
-              />
+              /> */}
               <span>about</span>
             </span>
-          </Link>
-          {/* <Link to="/login">
+            {/* </Link> */}
+            {/* <Link to="/login">
             <span className="navIconsUser">
               <FontAwesomeIcon
                 className="fontawesome"
-                icon="fa-solid fa-user"
+                icon={faUser}
                 size="lg"
               />
               <span>지넬 바이스</span>
             </span>
           </Link> */}
-          <img
+            {/* <img
             className="navContainerLogo"
             onClick={() => {
               navigate('/');
             }}
             src=""
             alt="로고"
-          />
-          {isFocus ? (
-            <div class="scrollable-container">
-              <NavModal />
-            </div>
-          ) : (
-            <span>제품 구매</span>
-          )}
-
-          {/* </Link> */}
-          {/* <title className="navContainerLogo">Semmel Weis</title> */}
-          {/* <input
-            className="navSearchInput"
-            onFocus={onFocusHandler}
-            onChange={onChangeInputHandler}
-            value={searchInput}
-            type="text"
-            placeholder="검색어 입력"
-            width="60px"
-            height="40px"
           /> */}
-          <div className="navSearchIconRight">
-            <FontAwesomeIcon
+            <h1 className="TitleName">J&S health</h1>
+            {isFocus ? (
+              <div className="scrollable-container">
+                <NavModal />
+              </div>
+            ) : (
+              <span>Shop</span>
+            )}
+            <div className="navSearchIconRight">
+              {/* <FontAwesomeIcon
               className="fontawesome"
-              icon="fa-solid fa-camera"
+              icon={faCamera}
               size="lg"
-            />
-          </div>
-
-          {/* {isFocus && (
-            <div ref={ref}>
-              <NavSearchList
-                inputValue={searchInput}
-                searchResult={searchResult}
-              />
+            /> */}
             </div>
-          )} */}
-        </div>
-
-        <div className="navIcons">
-          <span className="navIconsCart">
-            <Link to="/cart">
-              <FontAwesomeIcon
-                className="fontawesome"
-                icon="fa-solid fa-cart-shopping"
-                size="lg"
-              />
-            </Link>
-          </span>
-          <Link to="/login">
+            {/* <Link to="/login"> */}
             <span className="navIconsUser">
               <FontAwesomeIcon
                 className="fontawesome"
-                icon="fa-solid fa-user"
+                icon={faUser}
                 size="lg"
               />
               <span>로그인/회원가입</span>
             </span>
-          </Link>
+            {/* </Link> */}
+          </div>
+        </div>
+
+        <div className="navIcons">
+          {/* <span className="navIconsCart">
+            <FontAwesomeIcon icon="fa-solid fa-phone" />
+          </span> */}
+
           <span className="navIconsHamburger">
             <FontAwesomeIcon
               onClick={onClickHandler}
               className="fontawesome"
-              icon="fa-solid fa-bars"
+              icon={faBars}
               size="lg"
             />
           </span>
