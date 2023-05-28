@@ -4,7 +4,7 @@ import Login from './Login/Login';
 import Main from './Main/Main';
 import Footer from './Footer/Footer';
 import Nav from './Nav/Nav';
-import Detail from './Detial/Detail';
+import Detail from './Detial/Cart';
 
 const Router = () => {
   return (
