@@ -3,6 +3,7 @@ import CartItem from './CartItem';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import { API } from '../../config/config';
 import './Cart.scss';
+import Toss from './Toss';
 
 const Cart = () => {
   const [cartData, setCartData] = useState([]);
@@ -137,11 +138,12 @@ const Cart = () => {
 
             <div className="giftPayBox">
               <button type="button" className="payButton">
-                결제하기
+                <Toss />
+                {/* 결제하기
                 <FontAwesomeIcon
                   icon="fa-solid fa-circle-arrow-right"
                   size="lg"
-                />
+                /> */}
               </button>
             </div>
             <span className="payBackTitle">

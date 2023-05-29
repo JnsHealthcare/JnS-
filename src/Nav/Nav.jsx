@@ -82,7 +82,10 @@ const Nav = () => {
   if (isHideNav) return null;
 
   return (
-    <nav className="nav" style={{ backgroundColor: navbarBackground }}>
+    <nav
+      className="nav"
+      style={{ backgroundColor: navbarBackground, border: 'none' }}
+    >
       <span className="navButton">
         {/* <FontAwesomeIcon
           className="fontawesome"

@@ -12,6 +12,7 @@
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^13.0.0",
     "@testing-library/user-event": "^13.2.1",
+    "@tosspayments/payment-sdk": "^1.6.1",
     "axios": "^1.4.0",
     "build": "^0.1.4",
     "css": "^3.0.0",
