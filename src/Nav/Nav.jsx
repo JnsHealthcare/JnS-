@@ -24,6 +24,23 @@ const Nav = () => {
   const navigate = useNavigate();
   const ref = useRef();
   const isHideNav = interruptedRoute.some((path) => pathname.includes(path));
+  const [navbarBackground, setNavbarBackground] = useState('transparent');
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 0) {
+        setNavbarBackground('rgba(0, 0, 0, 0.5)');
+      } else {
+        setNavbarBackground('transparent');
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   const onClickHandler = () => {
     setIsClicked(true);
@@ -65,7 +82,7 @@ const Nav = () => {
   if (isHideNav) return null;
 
   return (
-    <nav className="nav">
+    <nav className="nav" style={{ backgroundColor: navbarBackground }}>
       <span className="navButton">
         {/* <FontAwesomeIcon
           className="fontawesome"
@@ -89,7 +106,7 @@ const Nav = () => {
                     {/* <span>메뉴</span> */}
                   </span>
                   {/* 모달 내용 */}
-                  <div className="modalContent">{/* 내용 추가 */}</div>
+                  {/* <div className="modalContent">내용 추가</div> */}
                 </div>
               ) : (
                 <FontAwesomeIcon
@@ -178,14 +195,14 @@ const Nav = () => {
             <FontAwesomeIcon icon="fa-solid fa-phone" />
           </span> */}
 
-          <span className="navIconsHamburger">
+          {/* <span className="navIconsHam">
             <FontAwesomeIcon
               onClick={onClickHandler}
               className="fontawesome"
               icon={faBars}
               size="lg"
             />
-          </span>
+          </span> */}
         </div>
       </div>
       <div className="sideModalWrapper" ref={ref}>

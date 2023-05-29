@@ -101,11 +101,11 @@ const Main = () => {
               alt="img"
               style={{
                 width: '100%',
-                height: '800px',
-                transform: isDropdownOpen ? 'rotate(360deg)' : 'none',
-                transition: 'transform 1s',
+                height: '1000px',
+                // transform: isDropdownOpen ? 'rotate(360deg)' : 'none',
+                // transition: 'transform 1s',
               }}
-              rotationY={rotationY}
+              // rotationY={rotationY}
             />
           </div>
         </article>

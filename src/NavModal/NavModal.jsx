@@ -24,7 +24,7 @@ const NavModal = ({ className, isFocus, setIsFocus }) => {
 
   return (
     <div className="NavPopUp">
-      <div onClick={onClick}>이미지</div>
+      <div onClick={onClick}>-</div>
     </div>
   );
 };
