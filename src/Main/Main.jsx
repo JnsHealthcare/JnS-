@@ -58,7 +58,7 @@ const Main = () => {
           <div className="hero-text">
             <h1>Welcome to Semmelweis </h1>
             <p>Discover our latest collection of innovative home appliances</p>
-            <a href="#" className="btn">
+            <a href="" className="btn">
               Shop Now
             </a>
           </div>
@@ -101,7 +101,7 @@ const Main = () => {
               alt="img"
               style={{
                 width: '100%',
-                height: '1000px',
+                // height: '1000px',
                 // transform: isDropdownOpen ? 'rotate(360deg)' : 'none',
                 // transition: 'transform 1s',
               }}

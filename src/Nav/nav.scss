@@ -24,6 +24,10 @@
     // border: none;
   }
 
+  .LoginForm {
+    z-index: 1;
+  }
+
   .navButton {
     // @include flex_column;
     // @include flex(column, center, null);
@@ -74,8 +78,8 @@
     }
 
     .TitleName {
-      position: relative;
-      bottom: 28px;
+      // position: relative;
+      // bottom: 28px;
     }
 
     .navSearch {

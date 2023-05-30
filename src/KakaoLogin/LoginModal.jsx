@@ -1,38 +1,45 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 export const API_KEY = '4ade0d3a8c815a692bf1d17a52c8819f';
-export const REDIRECT_URI = 'http://localhost:3000/KakaoLogin';
+export const REDIRECT_URI = 'http://localhost:3001';
 export const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
 
-const LoginModal = ({ setIsOpen }) => {
+const LoginModal = ({ modalClose }) => {
   const close = useRef();
-  const modalHandler = () => {
-    setIsOpen((prev) => !prev);
-  };
+  // const modalHandler = () => {
+  //   setIsOpen((prev) => !prev);
+  // };
 
-  useEffect(() => {
-    const handler = (e) => {
-      if (close.current && !close.current.contains(e.target)) {
-        setIsOpen(false);
-      }
-    };
-    document.addEventListener('click', handler);
+  // useEffect(() => {
+  //   const handler = (e) => {
+  //     if (close.current && !close.current.contains(e.target)) {
+  //       setIsOpen(false);
+  //     }
+  //   };
+  //   document.addEventListener('click', handler);
 
-    return () => document.removeEventListener('click', handler);
-  });
+  //   return () => document.removeEventListener('click', handler);
+  // });
 
   return (
     <LoginContainer ref={close}>
       <LoginHeader>
-        <button onClick={modalHandler}>✕</button>
-        <div onClick={modalHandler}>로그인 또는 회원 가입</div>
+        <button onClick={modalClose}>✕</button>
+        <div>로그인 또는 회원 가입</div>
         <div />
       </LoginHeader>
       <LoginBody>
-        <LoginWelcome></LoginWelcome>
+        <LoginWelcome>JnS 와 함께하세요</LoginWelcome>
         <LoginButton href={KAKAO_AUTH_URL}>
-          <img alt="로그인" src="/images/kakao.png" />
+          <img
+            src={`${process.env.PUBLIC_URL}/images/kakao.png`}
+            alt="img"
+            // style={{
+            //   width: '100%',
+            //   height: '1000px',
+            // }}
+          />
         </LoginButton>
         <LoginGuideText>
           <span>
@@ -104,7 +111,7 @@ const LoginTitle = styled.div`
   justify-content: center;
   align-items: center;
   gap: 20px;
-  color: #ff395c;
+  /* color: #ff395c; */
 
   img {
     width: 150px;

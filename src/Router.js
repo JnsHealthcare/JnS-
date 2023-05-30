@@ -4,7 +4,7 @@ import Login from './Login/Login';
 import Main from './Main/Main';
 import Footer from './Footer/Footer';
 import Nav from './Nav/Nav';
-import Detail from './Detial/Cart';
+import Cart from './Detial/Cart';
 import KakaoLogin from './KakaoLogin/KakaoLogin';
 // import Payment from './Payment/Payment';
 
@@ -17,7 +17,7 @@ const Router = () => {
         <Route path="/oauth/kakao/callback" element={<KakaoLogin />} />
         <Route path="/" element={<Main />} />
         <Route path="/footer" element={<Footer />} />
-        <Route path="/Detail" element={<Detail />} />
+        <Route path="/cart" element={<Cart />} />
         {/* <Route path="/payment" element={<Payment />} /> */}
       </Routes>
       <Footer />
