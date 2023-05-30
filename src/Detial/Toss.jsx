@@ -3,8 +3,8 @@ import { loadTossPayments } from '@tosspayments/payment-sdk';
 import { useEffect, useRef, useState } from 'react';
 
 const Toss = () => {
-  // const clientKey = 'test_ck_Wd46qopOB89bMxwy7553ZmM75y0v';
-  const clientKey = process.env.toss_payments_client_key;
+  const clientKey = 'test_ck_Wd46qopOB89bMxwy7553ZmM75y0v';
+  // const clientKey = process.env.toss_payments_client_key;
   const originUrl = process.env.originUrl;
 
   // console.log(payment);
