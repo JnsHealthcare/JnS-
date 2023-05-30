@@ -14,17 +14,19 @@ import './nav.scss';
 import KakaoLogin from '../KakaoLogin/KakaoLogin';
 import LoginModal from '../KakaoLogin/LoginModal';
 
-export const baseURL = 'http://localhost:3000';
+export const baseURL = 'http://localhost:3001';
 
 const interruptedRoute = ['signup', 'login'];
 
 const Nav = () => {
   const { pathname } = useLocation();
   const [isFocus, setIsFocus] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const [searchInput, setSearchInput] = useState('');
   const [itemsData, setItemsData] = useState([]);
   const [isClicked, setIsClicked] = useState(false);
   const [navModal, setNavModal] = useState(false);
+
   const navigate = useNavigate();
   const ref = useRef();
   const isHideNav = interruptedRoute.some((path) => pathname.includes(path));
@@ -47,31 +49,37 @@ const Nav = () => {
   }, []);
 
   const onClickHandler = () => {
+    // console.log(isOpen);
     setIsClicked(true);
   };
 
-  const onClick = () => {
-    setNavModal(!navModal);
+  const modalOpen = () => {
+    setIsOpen(true);
+    console.log(isOpen);
   };
 
-  const onChangeInputHandler = (e) => {
-    setSearchInput(e.target.value);
+  const modalClose = () => {
+    setIsOpen(false);
   };
 
-  const onPopUp = () => {
-    setIsFocus(!isFocus);
-  };
+  // const onChangeInputHandler = (e) => {
+  //   setSearchInput(e.target.value);
+  // };
 
-  const searchResult = itemsData
-    .filter(({ name }) =>
-      name.toLowerCase().includes(searchInput.toLowerCase())
-    )
-    .map(({ name, id }) => (
-      <li className="navSearchResult" key={id}>
-        <FontAwesomeIcon className="fontawesome" icon={faSearch} />
-        <span className="searchResultText">{name}</span>
-      </li>
-    ));
+  // const onPopUp = () => {
+  //   setIsFocus(!isFocus);
+  // };
+
+  // const searchResult = itemsData
+  //   .filter(({ name }) =>
+  //     name.toLowerCase().includes(searchInput.toLowerCase())
+  //   )
+  //   .map(({ name, id }) => (
+  //     <li className="navSearchResult" key={id}>
+  //       <FontAwesomeIcon className="fontawesome" icon={faSearch} />
+  //       <span className="searchResultText">{name}</span>
+  //     </li>
+  //   ));
 
   useEffect(() => {
     fetch('/data/searchMockData.json', {
@@ -169,14 +177,22 @@ const Nav = () => {
             src=""
             alt="로고"
           /> */}
-            <h1 className="TitleName">J&S health</h1>
-            {isFocus ? (
-              <div className="scrollable-container">
-                <NavModal />
-              </div>
-            ) : (
-              <span>Shop</span>
-            )}
+            <h1
+              className="TitleName"
+              onClick={() => {
+                navigate('/');
+              }}
+            >
+              J&S health
+            </h1>
+            <span
+              onClick={() => {
+                navigate('/cart');
+              }}
+            >
+              Shop
+            </span>
+            {/* )} */}
             <div className="navSearchIconRight">
               {/* <FontAwesomeIcon
               className="fontawesome"
@@ -185,16 +201,22 @@ const Nav = () => {
             /> */}
             </div>
             {/* <Link to="/login"> */}
-            <span className="navIconsUser">
-              {/* <FontAwesomeIcon
+            {/* <span className="navIconsUser" onClick={handleLoginClick}> */}
+            {/* <FontAwesomeIcon
                 className="fontawesome"
                 icon={faUser}
                 size="lg"
               /> */}
-              {/* <span>로그인/회원가입</span> */}
-              {/* <KakaoLogin /> */}
-              <LoginModal />
+
+            <span style={{ cursor: 'pointer' }} onClick={modalOpen}>
+              로그인
             </span>
+            {/* <div onClick={modalOpen} className="LoginForm"> */}
+            {isOpen && <LoginModal modalClose={modalClose} />}
+            {/* </div> */}
+
+            {/* <KakaoLogin /> */}
+            {/* </span> */}
             {/* </Link> */}
           </div>
         </div>
