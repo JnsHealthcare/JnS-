@@ -2,11 +2,12 @@ import React, { useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { API_KEY, REDIRECT_URI } from './LoginModal';
 
-export const baseURL = 'http://localhost:3000/kakaLogin';
+export const baseURL = 'http://localhost:3000/kakaoLogin';
 
 const KakaoLogin = () => {
   const [searchParams] = useSearchParams();
   const code = searchParams.get('code');
+  console.log(code);
   const navigate = useNavigate();
 
   const getToken = async () => {
@@ -33,12 +34,13 @@ const KakaoLogin = () => {
 
     localStorage.setItem('token', accessToken);
 
-    navigate('/');
+    // navigate('/');
   };
 
   useEffect(() => {
     getToken();
   });
+
   return <div>kakao 로그인</div>;
 };
 

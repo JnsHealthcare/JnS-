@@ -1,11 +1,13 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 export const API_KEY = '4ade0d3a8c815a692bf1d17a52c8819f';
-export const REDIRECT_URI = 'http://localhost:3000/KakaoLogin';
+export const REDIRECT_URI = 'http://localhost:3001';
 export const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
 
-const LoginModal = ({ setIsOpen }) => {
+const LoginModal = ({}) => {
+  const [isOpen, setIsOpen] = useState(true);
+
   const close = useRef();
   const modalHandler = () => {
     setIsOpen((prev) => !prev);
@@ -32,7 +34,14 @@ const LoginModal = ({ setIsOpen }) => {
       <LoginBody>
         <LoginWelcome></LoginWelcome>
         <LoginButton href={KAKAO_AUTH_URL}>
-          <img alt="로그인" src="/images/kakao.png" />
+          <img
+            src={`${process.env.PUBLIC_URL}/images/kakao.png`}
+            alt="img"
+            // style={{
+            //   width: '100%',
+            //   height: '1000px',
+            // }}
+          />
         </LoginButton>
         <LoginGuideText>
           <span>

@@ -12,8 +12,9 @@ import SideModal from '../SideModal/SideModal';
 import NavModal from '../NavModal/NavModal';
 import './nav.scss';
 import KakaoLogin from '../KakaoLogin/KakaoLogin';
+import LoginModal from '../KakaoLogin/LoginModal';
 
-export const baseURL = 'http://localhost:3000/';
+export const baseURL = 'http://localhost:3000';
 
 const interruptedRoute = ['signup', 'login'];
 
@@ -191,7 +192,8 @@ const Nav = () => {
                 size="lg"
               /> */}
               {/* <span>로그인/회원가입</span> */}
-              <KakaoLogin />
+              {/* <KakaoLogin /> */}
+              <LoginModal />
             </span>
             {/* </Link> */}
           </div>
