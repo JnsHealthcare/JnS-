@@ -1,159 +1,199 @@
-import React, { useState, useEffect } from 'react';
-import CartItem from './CartItem';
+import React, { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { API } from '../../config/config';
+import ImageModal from '../ImageModal/ImageModal';
+// import { API } from '../../../src/config/config';
+import { useParams } from 'react-router-dom';
 import './Cart.scss';
 import Toss from './Toss';
 
-const Cart = () => {
-  const [cartData, setCartData] = useState([]);
+const Detail = () => {
+  const [detailInfoList, setDetailInfoList] = useState({
+    id: 0,
+    koreanName: '',
+    name: '',
+    price: '2.300.000',
+    description: '',
+    productCode: '',
+    rating: 0,
+  });
 
-  const total = cartData
-    .reduce((prev, current) => prev + current.price * current.quantity, 0)
-    .toLocaleString('ko-KR', { style: 'currency', currency: 'EUR' });
+  const [isClicked, setIsClicked] = useState(false);
+  const [openSlider, setOpenSlider] = useState(false);
+  const [secondSlider, setSecondSlider] = useState(false);
 
-  // const onDeleteClick = (id) => {
-  //   fetch(`${API.cart}`, {
-  //     method: 'DELETE',
+  const { productDetailId } = useParams();
+  // const productDetailId = params.id;
+
+  const handleSliderToggle = () => {
+    setOpenSlider((prev) => !prev);
+  };
+
+  const handleSliderOpen = () => {
+    setSecondSlider((prev) => !prev);
+  };
+
+  const productPrice = detailInfoList.price;
+  const productID = detailInfoList.id;
+  const priceWithCurrency = productPrice.toLocaleString('ko-KR');
+  // const detailImageList = detailInfoList.imageUrl.split(', ');
+
+  // const buyButtonClickHandler = () => {
+  //   fetch('http://10.58.52.142:3000/cart/putItem', {
+  //     method: 'POST',
   //     headers: {
   //       'Content-Type': 'application/json',
-  //       Authorization: window.localStorage.getItem('TOKEN'),
+  //       jwtoken: window.localStorage.getItem('jwtoken'),
   //     },
-  //     body: JSON.stringify({ productId: id }),
-  //   });
-
-  //   fetch(`${API.cart}`, {
-  //     method: 'GET',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //       Authorization: window.localStorage.getItem('TOKEN'),
-  //     },
+  //     body: JSON.stringify({
+  //       productId: productID,
+  //     }),
   //   })
-  //     .then((res) => res.json())
-  //     .then((data) => setCartData(data));
-  // };
-
-  // const onQuantityChange = (id, quantity) => {
-  //   fetch(`${API.cart}`, {
-  //     method: 'PATCH',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //       Authorization: window.localStorage.getItem('TOKEN'),
-  //     },
-  //     body: JSON.stringify({ productId: id, quantity: quantity }),
-  //   });
-
-  //   setCartData((cartData) =>
-  //     cartData.map((cart) => {
-  //       if (cart.id === id) cart.quantity = quantity;
-  //       return cart;
+  //     .then((res) => {
+  //       if (res.status === 201) {
+  //         alert('장바구니에 추가되었습니다');
+  //       } else if (res.status === 400) {
+  //         alert('구매할 수 없는 상품입니다');
+  //       }
   //     })
-  //   );
+  //     .then((res, err) => {
+  //       alert('ERROR:', err.message);
+  //     });
   // };
-
   // useEffect(() => {
-  //   fetch(`${API.cart}`, {
+  //   fetch(`${API.detail}/${productDetailId}`, {
   //     method: 'GET',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //       Authorization: window.localStorage.getItem('TOKEN'),
-  //     },
   //   })
   //     .then((res) => res.json())
-  //     .then((data) => setCartData(data));
+  //     .then((data) => setDetailInfoList(data[0]));
   // }, []);
 
   return (
-    <div className="cart">
-      <div className="shopCart">
-        <div className="titleBox">
-          <h1 className="cartTitle">제넬 바이스</h1>
-          <span className="cartTitleIcon">
-            <FontAwesomeIcon icon="fa-solid fa-ellipsis" />
-          </span>
-        </div>
-        {/* <div className="detailTitleBox">주문</div> */}
-        <div className="titleBoxWish">
-          {/* <button className="shippingTextBox" type="button">
-            <FontAwesomeIcon icon="fa-solid fa-truck" size="lg" />
-            <span className="shippingText">배송</span>
-          </button> */}
+    <>
+      <div className="detail">
+        <main className="detailMainContainer">
+          <ul className="detailImageContainer">
+            {/* {detailImageList.map((src, index) => {
+              return <li key={index} className="detailImageBox"></li>;
+            })} */}
+            <img
+              src={`${process.env.PUBLIC_URL}/images/Lime.png`}
+              alt="img"
+              style={{
+                width: '100%',
+              }}
+            />
+            <video
+              src={`${process.env.PUBLIC_URL}/images/video.mp4`}
+              alt="img"
+              style={{
+                width: '100%',
+              }}
+              autoplay
+              loop
+              controls
+            />
+          </ul>
 
-          {/* <button className="shippingTextBox" type="button">
-            <FontAwesomeIcon icon="fa-solid fa-warehouse" size="lg" />
-            <span className="shippingText">픽업</span>
-          </button> */}
-        </div>
-
-        <div className="favoriteProductBox">
-          <img src={`${process.env.PUBLIC_URL}/images/Lime.png`} />
-          {/* {cartData.map((data) => {
-            return (
-              <CartItem
-                key={data.id}
-                cart={data}
-                // onDeleteClick={onDeleteClick}
-                // onQuantityChange={onQuantityChange}
-              />
-            );
-          })} */}
-        </div>
-
-        <div className="productBoxCommentBox">
-          <div className="serviceBox">조립서비스를 추가하시겠습니까?</div>
-          <div className="serviceDetailBox">
-            <h1 className="serviceTitle">
-              <FontAwesomeIcon icon="fa-solid fa-oil-well" size="lg" />
-              조립 서비스
-            </h1>
-            <p>거꾸리에 대한 정보</p>
-            {/* <span>우편 번호를 추가하여 예약 가능 여부 및 가격 확인</span> */}
-
-            <p className="addLink">추가정보 링크</p>
+          <div className="detailSummary">{detailInfoList.description}</div>
+          <div className="productCodeBox">
+            <div className="productCodeTitle"></div>
+            {/* <span className="productCode">{detailInfoList.productCode}</span> */}
           </div>
-          {/* <button className="serviceButton" type="button">
-            조립 서비스 선택하기
-          </button> */}
-        </div>
-      </div>
-
-      <div className="payBox">
-        <div className="payDetailBox">
-          <div className="priceBox">
-            <div className="priceDetailBox">주문 내역</div>
-            <div className="orderHistoryBox">
-              <span>제품 가격</span>
-              <div className="boxPrice">{total}</div>
+        </main>
+        <aside className="productBuyModule">
+          <div className="stickyContainer">
+            <div className="productNameBox">
+              <span className="productName">{detailInfoList.name}</span>
+              <span className="productName">{detailInfoList.koreanName}</span>
             </div>
-            <div className="textShipping">
-              <span>배송</span>
-              <span className="noneShipping">
-                아직 배송비가 산정되지 않았습니다
-              </span>
+            {/* <div className="subDescription">{detailInfoList.category}</div> */}
+            <div className="price">
+              <div className="currencyStyle">&#8361;</div>
+              {priceWithCurrency}
             </div>
-            <div className="totalPrice">
-              <span>총 주문금액</span>
-              <div className="wonBox">{total}</div>
+            <div className="subRating">{detailInfoList.rating}</div>
+            <div className="buyMethodContainer">
+              <div className="buyMethodMsg">어떻게 구매하시겠어요?</div>
+              <div className="buyMethodBox">
+                <div className="deliveryBox">
+                  <div className="deliveryText">배송</div>
+                  <button className="deliveryLink">구매 가능 여부 확인</button>
+                </div>
+                <div className="pickupBox">
+                  {/* <div className="pickupText">매장구매</div> */}
+                  <button className="pickupLink">
+                    매장 재고 및 재입고 날짜 확인
+                  </button>
+                </div>
+              </div>
             </div>
-
-            <div className="giftPayBox">
-              <button type="button" className="payButton">
-                <Toss />
-                {/* 결제하기
-                <FontAwesomeIcon
-                  icon="fa-solid fa-circle-arrow-right"
-                  size="lg"
-                /> */}
-              </button>
+            <button className="buyButton">
+              <Toss />
+            </button>
+            <div
+              className="deliveryBox"
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                marginTop: '30px',
+                // gap: '10px',
+              }}
+            >
+              <div className="SliderBox">
+                <span
+                  style={{
+                    border: '1px solid #cfcfcf',
+                    height: '50px',
+                    textAlign: 'center',
+                    cursor: 'pointer',
+                    padding: '17px',
+                  }}
+                  onClick={handleSliderToggle}
+                >
+                  상품설명
+                  <span className="detailModalArrow"></span>
+                  {openSlider && (
+                    <div className="detailSlider open">
+                      <div className="detailSliderContent">
+                        저희 회사의 거꾸리는 앞으로도 없을 기술을 개발하여
+                        탄생시킨 의료기기
+                      </div>
+                    </div>
+                  )}
+                </span>
+                <span
+                  style={{
+                    border: '1px solid #cfcfcf',
+                    height: '50px',
+                    textAlign: 'center',
+                    cursor: 'pointer',
+                    padding: '17px',
+                  }}
+                  onClick={handleSliderOpen}
+                >
+                  치수
+                  <span className="detailModalArrow"></span>
+                  {secondSlider && (
+                    <div className="detailSlider open">
+                      <div className="detailSliderContent">250 에 30</div>
+                    </div>
+                  )}
+                </span>
+              </div>
             </div>
-            <span className="payBackTitle">
-              반품 정책 365일 이내에 제품 환불 가능
-            </span>
           </div>
-        </div>
+        </aside>
       </div>
-    </div>
+      {isClicked && (
+        <ImageModal
+          // modalImage={detailImageList[0]}
+          setIsClicked={setIsClicked}
+          isClicked={isClicked}
+          className="imageModalContainer"
+        />
+      )}
+    </>
   );
 };
 
-export default Cart;
+export default Detail;

@@ -1,11 +1,27 @@
 import React, { useRef, useEffect, useState } from 'react';
 import styled from 'styled-components';
+import './LoginModal.scss';
 
 export const API_KEY = '4ade0d3a8c815a692bf1d17a52c8819f';
 export const REDIRECT_URI = 'http://localhost:3001';
 export const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
 
 const LoginModal = ({ modalClose }) => {
+  const [userLogin, setUserLogin] = useState({ email: '', password: '' });
+
+  const { email, password } = userLogin;
+  const emailRegex =
+    /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+  const passwordRegex =
+    /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/;
+  const emailValueCheck = emailRegex.test(email);
+  const passwordValueCheck = passwordRegex.test(password);
+  const isUserTitle = emailValueCheck || passwordValueCheck;
+
+  const onUserInfoChange = (e) => {
+    const { name, value } = e.target;
+    setUserLogin({ ...userLogin, [name]: value });
+  };
   const close = useRef();
   // const modalHandler = () => {
   //   setIsOpen((prev) => !prev);
@@ -31,6 +47,63 @@ const LoginModal = ({ modalClose }) => {
       </LoginHeader>
       <LoginBody>
         <LoginWelcome>JnS 와 함께하세요</LoginWelcome>
+        <LoginForm>
+          <input
+            type="text"
+            className={
+              !isUserTitle && userLogin.email.length > 0
+                ? 'inputId inputDisabled'
+                : 'inputId'
+            }
+            name="email"
+            value={userLogin.email}
+            onChange={onUserInfoChange}
+            placeholder="아이디를 입력하세요"
+            style={{
+              width: '100%',
+              height: '45px',
+            }}
+          />
+          <input
+            type="password"
+            className={
+              !isUserTitle && userLogin.password.length > 0
+                ? 'inputPassword  inputFail'
+                : 'inputPassword '
+            }
+            name="password"
+            placeholder="비밀번호 를 입력하세요"
+            onChange={onUserInfoChange}
+            value={userLogin.password}
+            style={{
+              width: '100%',
+              height: '45px',
+            }}
+          />
+        </LoginForm>
+
+        <button
+          className="loginBtn"
+          disabled={!isUserTitle}
+          // onClick={}
+          style={{
+            width: '100%',
+            height: '45px',
+          }}
+        >
+          로그인
+        </button>
+
+        <h
+          style={{
+            fontSize: '15px',
+            marginLeft: '157px',
+            cursor: 'pointer',
+          }}
+        >
+          회원가입
+        </h>
+
         <LoginButton href={KAKAO_AUTH_URL}>
           <img
             src={`${process.env.PUBLIC_URL}/images/kakao.png`}
@@ -94,13 +167,14 @@ const LoginGuideText = styled.div`
 const LoginBody = styled.div`
   width: 450px;
   height: fit-content;
-  padding: 30px 40px;
+  padding: 44px 40px;
   border-top: 1px solid #eaeaea;
 `;
 const LoginWelcome = styled.h3`
   font-size: 30px;
   font-weight: 600;
   text-align: center;
+  line-height: 68px;
 
   span {
     font-size: 16px;
@@ -121,6 +195,7 @@ const LoginTitle = styled.div`
 const LoginButton = styled.a`
   img {
     width: 100%;
+    height: 50px;
     object-fit: cover;
     margin: 25px auto;
     display: flex;
@@ -128,4 +203,8 @@ const LoginButton = styled.a`
     align-items: center;
     border-radius: 5px;
   }
+`;
+
+const LoginForm = styled.div`
+  gap: 10px;
 `;

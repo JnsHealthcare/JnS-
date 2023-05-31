@@ -29,7 +29,11 @@ const Toss = () => {
         });
     });
   };
-  return <button onClick={payment}>결제하기</button>;
+  return (
+    <h1 onClick={payment} className="custom-button">
+      결제하기
+    </h1>
+  );
 };
 
 export default Toss;

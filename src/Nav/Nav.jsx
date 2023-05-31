@@ -209,7 +209,7 @@ const Nav = () => {
               /> */}
 
             <span style={{ cursor: 'pointer' }} onClick={modalOpen}>
-              로그인
+              로그인/회원가입
             </span>
             {/* <div onClick={modalOpen} className="LoginForm"> */}
             {isOpen && <LoginModal modalClose={modalClose} />}
