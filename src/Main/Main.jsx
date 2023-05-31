@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import CategoryCarousel from '../component/CategoryCarousel';
 // import EventCarousel from '../../components/Carousel/EventCarousel';
 import './Main.scss';
@@ -8,6 +8,7 @@ import '../styles/App.css';
 const Main = () => {
   const [inputValue, setInputValue] = useState('');
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const navigate = useNavigate();
 
   const [rotationY, setRotationY] = useState(0);
 
@@ -33,7 +34,12 @@ const Main = () => {
             런칭이 다가오는 제넬 바이슨 거꾸리 와 함께하세요.
           </div> */}
         </div>
-        <header>
+        <header
+          onClick={() => {
+            navigate('/cart');
+          }}
+          style={{ cursor: 'pointer' }}
+        >
           <div className="logo">Semmelweis</div>
           <h className="nav-links">
             <p className="shoptitle">Shop</p>
@@ -58,9 +64,14 @@ const Main = () => {
           <div className="hero-text">
             <h1>Welcome to Semmelweis </h1>
             <p>Discover our latest collection of innovative home appliances</p>
-            <a href="" className="btn">
+            <h
+              // onClick={() => {
+              //   navigate('/cart');
+              // }}
+              className="btn"
+            >
               Shop Now
-            </a>
+            </h>
           </div>
         </header>
 
