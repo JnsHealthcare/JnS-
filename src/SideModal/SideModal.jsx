@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './SideModal.scss';
 
 const SideModal = ({ className, setIsClicked }) => {
@@ -14,7 +14,7 @@ const SideModal = ({ className, setIsClicked }) => {
     <aside className={className}>
       <div className="sideModalTitle">
         <button className="sideModalCloseButton" onClick={onCloseButtonHandler}>
-          {/* <FontAwesomeIcon icon="fa-solid fa-xmark" size="lg" /> */}
+          <FontAwesomeIcon icon="fa-solid fa-xmark" size="lg" />
         </button>
         <img
           className="modalLogo"
@@ -43,7 +43,7 @@ const SideModal = ({ className, setIsClicked }) => {
           {SIDEMENU_LIST_SEMIBOLD.map(({ id, list }) => {
             return (
               <li className="mainSemiBoldMenuList" key={id}>
-                {list}
+                <Link to={`products/category/${id}`}>{list}</Link>
               </li>
             );
           })}
@@ -78,7 +78,7 @@ export default SideModal;
 const SIDEMENU_LIST_BOLD = [{ id: 1, list: '라임 보기' }];
 
 const SIDEMENU_LIST_SEMIBOLD = [
-  { id: 1, list: '사전 예약하기' },
+  { id: 1, list: '주문하기' },
   { id: 3, list: '라임 스토리' },
   { id: 4, list: '새로운 소식' },
   { id: 5, list: '회사 개요' },

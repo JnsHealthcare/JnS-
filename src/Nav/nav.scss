@@ -18,6 +18,7 @@
   transition: background-color 0.5s;
   // background-image: url('https://picsum.photos/600');
   z-index: 1;
+  cursor: pointer;
 
   .navbar.transparent {
     background-color: white; /* 스크롤 내릴 때 검정색 투명 배경 */
