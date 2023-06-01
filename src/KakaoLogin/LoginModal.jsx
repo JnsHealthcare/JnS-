@@ -1,4 +1,5 @@
 import React, { useRef, useEffect, useState } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
 import styled from 'styled-components';
 import './LoginModal.scss';
 
@@ -94,7 +95,8 @@ const LoginModal = ({ modalClose }) => {
           로그인
         </button>
 
-        <h
+        <Link
+          to="/signup"
           style={{
             fontSize: '15px',
             marginLeft: '157px',
@@ -102,7 +104,7 @@ const LoginModal = ({ modalClose }) => {
           }}
         >
           회원가입
-        </h>
+        </Link>
 
         <LoginButton href={KAKAO_AUTH_URL}>
           <img
