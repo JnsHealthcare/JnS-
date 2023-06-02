@@ -133,7 +133,7 @@ const Login = () => {
               navigate('/signup');
             }}
           >
-            개인 회원 가입
+            회원 가입
           </button>
         </form>
       </div>
