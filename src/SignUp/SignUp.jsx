@@ -19,6 +19,8 @@ const Signup = () => {
     password: '',
   });
 
+  console.log(signupValue);
+
   const getSignupValue = (e) => {
     const { id, value } = e.target;
     setSignupValue({ ...signupValue, [id]: value });

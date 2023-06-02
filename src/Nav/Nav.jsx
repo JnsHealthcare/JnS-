@@ -13,6 +13,7 @@ import NavModal from '../NavModal/NavModal';
 import './nav.scss';
 import KakaoLogin from '../KakaoLogin/KakaoLogin';
 import LoginModal from '../KakaoLogin/LoginModal';
+import SideRModal from '../sideRmodal/SideRModal';
 
 export const baseURL = 'http://localhost:3001';
 
@@ -192,32 +193,11 @@ const Nav = () => {
             >
               Shop
             </span>
-            {/* )} */}
-            <div className="navSearchIconRight">
-              {/* <FontAwesomeIcon
-              className="fontawesome"
-              icon={faCamera}
-              size="lg"
-            /> */}
-            </div>
-            {/* <Link to="/login"> */}
-            {/* <span className="navIconsUser" onClick={handleLoginClick}> */}
-            {/* <FontAwesomeIcon
-                className="fontawesome"
-                icon={faUser}
-                size="lg"
-              /> */}
 
             <span style={{ cursor: 'pointer' }} onClick={modalOpen}>
               로그인/회원가입
             </span>
-            {/* <div onClick={modalOpen} className="LoginForm"> */}
-            {isOpen && <LoginModal modalClose={modalClose} />}
-            {/* </div> */}
-
-            {/* <KakaoLogin /> */}
-            {/* </span> */}
-            {/* </Link> */}
+            {isOpen && <SideRModal modalClose={modalClose} />}
           </div>
         </div>
 
