@@ -4,19 +4,21 @@
 .sideModal2 {
   position: fixed;
   z-index: 999;
-  top: 50%;
-  right: -480px; /* 오른쪽으로 초기에 위치시킴 */
-  transform: translate(240%, -50%); /* 가운데에 정렬 */
+  top: 0;
+  bottom: 0;
+  right: 0;
   width: 480px;
   height: 100%;
   padding: 0 30px;
   overflow-y: scroll;
+  transform: translateX(0);
+  transition: transform 200ms 0s;
+  transition-property: transform, visibility;
   background-color: #fff;
   box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.2);
-  transition: right 400ms;
 
   &.open {
-    right: 0; /* 열릴 때 오른쪽으로 이동하여 보여짐 */
+    right: 0;
   }
 
   .sideModalTitle2 {
@@ -212,5 +214,36 @@
   .kakaoLogin {
     width: 100;
     background-color: #929292;
+  }
+}
+
+@media (max-width: 370px) {
+  .sideModal2 {
+    width: 100%;
+    padding: 0 20px;
+  }
+
+  .sideModalListWrapper2 {
+    padding: 0 20px 0 80px;
+  }
+
+  .sideModalButtonWrapper2 {
+    padding: 20px 0px 12px 60px;
+    font-size: 10px;
+  }
+
+  .loginBox {
+    width: 100%;
+  }
+
+  .inputForm {
+    .inputId,
+    .inputPassword {
+      font-size: 0.9rem;
+    }
+
+    .loginBtn {
+      font-size: 0.85rem;
+    }
   }
 }

@@ -21,12 +21,12 @@ const interruptedRoute = ['signup', 'login'];
 
 const Nav = () => {
   const { pathname } = useLocation();
-  const [isFocus, setIsFocus] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [searchInput, setSearchInput] = useState('');
   const [itemsData, setItemsData] = useState([]);
   const [isClicked, setIsClicked] = useState(false);
   const [navModal, setNavModal] = useState(false);
+  const [loginModalOpen, setLoginModalOpen] = useState(false);
 
   const navigate = useNavigate();
   const ref = useRef();
@@ -55,8 +55,8 @@ const Nav = () => {
   };
 
   const modalOpen = () => {
-    setIsOpen(true);
     console.log(isOpen);
+    setIsOpen(true);
   };
 
   const modalClose = () => {
@@ -197,7 +197,13 @@ const Nav = () => {
             <span style={{ cursor: 'pointer' }} onClick={modalOpen}>
               로그인/회원가입
             </span>
-            {isOpen && <SideRModal modalClose={modalClose} />}
+            {isOpen && (
+              <SideRModal
+                modalClose={modalClose}
+                isOpen={isOpen}
+                setIsOpen={setIsOpen}
+              />
+            )}
           </div>
         </div>
 
