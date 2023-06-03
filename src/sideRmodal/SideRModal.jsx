@@ -2,15 +2,23 @@ import React, { useState, useRef } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styled from 'styled-components';
-// import './SideModal.scss';
 import './SideRModal.scss';
+import { patchMyInfoFormData } from '../api/login';
 
 export const API_KEY = '4ade0d3a8c815a692bf1d17a52c8819f';
 export const REDIRECT_URI = 'http://localhost:3001';
 export const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
 
-const SideRModal = ({ className, setIsClicked, modalClose, modalOpen }) => {
+const SideRModal = ({
+  className,
+  setIsClicked,
+  modalClose,
+  modalOpen,
+  loginModalOpen,
+  setLoginModalOpen,
+}) => {
   const [userLogin, setUserLogin] = useState({ email: '', password: '' });
+  const navigate = useNavigate();
 
   const { email, password } = userLogin;
   const emailRegex =
@@ -27,15 +35,12 @@ const SideRModal = ({ className, setIsClicked, modalClose, modalOpen }) => {
   };
   const close = useRef();
 
-  const onCloseButtonHandler = () => {
-    setIsClicked(false);
-  };
-
   return (
     <aside className="sideModal2">
       <div className="sideModalTitle2">
-        <button className="sideModalCloseButton2" onClick={modalOpen}>
-          <FontAwesomeIcon icon="fa-solid fa-xmark" size="lg" />
+        <button className="sideModalCloseButton2" onClick={modalClose}>
+          {/* <FontAwesomeIcon icon="fa-solid fa-xmark" size="lg" /> */}
+          <h>x</h>
         </button>
       </div>
 
@@ -78,10 +83,18 @@ const SideRModal = ({ className, setIsClicked, modalClose, modalOpen }) => {
             className="loginBtn"
             disabled={!isUserTitle}
             // onClick={}
+            patchMyInfoFormData
           >
             로그인
           </button>
-          <button className="joinBtn">회원 가입</button>
+          <button
+            className="joinBtn"
+            onClick={() => {
+              navigate('/signup');
+            }}
+          >
+            회원가입
+          </button>
         </form>
       </div>
       <div className="kakaoLogin">
@@ -187,19 +200,3 @@ const LoginButton = styled.a`
 const LoginForm = styled.div`
   gap: 10px;
 `;
-
-const SIDEMENU_LIST_BOLD = [{ id: 1, list: '라임 보기' }];
-
-const SIDEMENU_LIST_SEMIBOLD = [
-  { id: 1, list: '주문하기' },
-  { id: 3, list: '라임 스토리' },
-  { id: 4, list: '새로운 소식' },
-  { id: 5, list: '회사 개요' },
-];
-
-const SIDEMENU_INFORMATION = [
-  { id: 1, list: '매장안내' },
-  { id: 4, list: '고객지원' },
-  { id: 5, list: '배송조회' },
-  { id: 6, list: '내 프로필' },
-];
