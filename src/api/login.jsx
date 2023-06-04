@@ -18,3 +18,14 @@ export const patchMyInfoFormData = async (args) => {
     headers: { 'Content-Type': 'application/json' },
   });
 };
+
+export const signUp = async (args) => {
+  const axios = initAxios();
+  return await axios.post(`${nameSpace}${prefix}oauth/Login`, args, {
+    name: args.name,
+    birthdate: args.birthdate,
+    email: args.email,
+    password: args.password,
+    phoneNumber: args.phoneNumber,
+  });
+};

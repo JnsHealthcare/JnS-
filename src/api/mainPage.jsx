@@ -5,10 +5,8 @@ const nameSpace = '/main';
 export const postMain = async (args) => {
   const axios = initAxios();
   try {
-    axios.post(`${nameSpace}`, {
+    axios.get(`${nameSpace}`, {
       //   id: args.id,
-      imgUrl1: args.imgUrl1,
-      imgUrl2: args.imgUrl2,
       imgUrl3: args.imgUrl3,
       imgUrl4: args.imgUrl4,
     });
