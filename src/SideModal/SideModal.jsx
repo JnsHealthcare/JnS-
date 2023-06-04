@@ -14,7 +14,8 @@ const SideModal = ({ className, setIsClicked }) => {
     <aside className={className}>
       <div className="sideModalTitle">
         <button className="sideModalCloseButton" onClick={onCloseButtonHandler}>
-          <FontAwesomeIcon icon="fa-solid fa-xmark" size="lg" />
+          {/* <FontAwesomeIcon icon="fa-solid fa-xmark" size="lg" /> */}
+          <h>x</h>
         </button>
         <img
           className="modalLogo"
@@ -59,16 +60,14 @@ const SideModal = ({ className, setIsClicked }) => {
           })}
         </ul>
       </div>
-      <div className="sideModalButtonWrapper">
+      {/* <div className="sideModalButtonWrapper">
         <button className="sideModalButton">
           <span>한국어</span>
-          {/* <FontAwesomeIcon icon="fa-solid fa-chevron-down" /> */}
         </button>
         <button className="sideModalButton">
-          {/* <FontAwesomeIcon icon="fa-solid fa-globe" /> */}
           <span>국가 변경</span>
         </button>
-      </div>
+      </div> */}
     </aside>
   );
 };
