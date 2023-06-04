@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import SignupImageList from '../SingUpImage/SingUplmage';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useForm } from 'react-hook-form';
 // import { API } from '../../config/config.js';
 
 import './SignUp.scss';
@@ -13,7 +14,6 @@ const Signup = () => {
     name: '',
     birthdate: '',
     phoneNumber: '',
-    gender: '',
     address: '',
     email: '',
     password: '',
@@ -151,12 +151,6 @@ const SIGNUP_INPUT_LIST = [
     title: '휴대폰',
     type: 'text',
     name: 'phoneNumber',
-  },
-  {
-    id: 4,
-    title: '성별(남성, 여성)',
-    type: 'text',
-    name: 'gender',
   },
   {
     id: 5,
