@@ -1,6 +1,6 @@
-import initAxios from './defaultClient';
+import initAxios from './defaultclinet';
 
-const nameSpace = '/';
+const nameSpace = '/main';
 
 export const postMain = async (args) => {
   const axios = initAxios();

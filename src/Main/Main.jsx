@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import CategoryCarousel from '../component/CategoryCarousel';
+import { postMain } from '../api/mainPage';
 // import EventCarousel from '../../components/Carousel/EventCarousel';
 import './Main.scss';
 import '../styles/App.css';
@@ -9,6 +10,15 @@ const Main = () => {
   const [inputValue, setInputValue] = useState('');
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const navigate = useNavigate();
+
+  // useEffect(() => {
+  //   postMain({ slug: 'home' })
+  //     .then((res) => res.json())
+  //     .then((res) => {
+  //       setInputValue(res.data.body);
+  //     })
+  //     .catch((err) => alert(err));
+  // }, []);
 
   const [rotationY, setRotationY] = useState(0);
 
