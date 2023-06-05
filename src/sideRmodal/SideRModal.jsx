@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styled from 'styled-components';
 import './SideRModal.scss';
 import { patchMyInfoFormData } from '../api/login';
+import { API } from '../config/config';
 
 export const API_KEY = '4ade0d3a8c815a692bf1d17a52c8819f';
 export const REDIRECT_URI = 'http://localhost:3001';
@@ -18,6 +19,7 @@ const SideRModal = ({
   setLoginModalOpen,
 }) => {
   const [userLogin, setUserLogin] = useState({ email: '', password: '' });
+  console.log(userLogin);
   const navigate = useNavigate();
 
   const { email, password } = userLogin;
@@ -34,6 +36,21 @@ const SideRModal = ({
     setUserLogin({ ...userLogin, [name]: value });
   };
   const close = useRef();
+
+  const hadleLogin = () => {
+    fetch(`${API.login}`, {
+      method: 'POST',
+      headers: { 'Content-type': 'application/json' },
+      body: JSON.stringify({ ...userLogin }),
+    })
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        localStorage.setItem('TOKEN', data.accessToken);
+        alert('로그인에 성공했습니다');
+      });
+  };
 
   return (
     <aside className="sideModal2">
@@ -82,7 +99,7 @@ const SideRModal = ({
           <button
             className="loginBtn"
             disabled={!isUserTitle}
-            // onClick={}
+            onClick={hadleLogin}
             patchMyInfoFormData
           >
             로그인

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import SignupImageList from '../SingUpImage/SingUplmage';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { API } from '../config/config';
 import { useForm } from 'react-hook-form';
 // import { API } from '../../config/config.js';
 
@@ -55,27 +56,27 @@ const Signup = () => {
   //         });
   // };
 
-  //   const gotoMain = () => {
-  //     fetch(`${API.signup}`, {
-  //       method: 'POST',
-  //       headers: { 'Content-Type': 'application/json' },
-  //       body: JSON.stringify({ ...signupValue }),
-  //     })
-  //       .then((response) => {
-  //         if (response.ok === true) {
-  //           return response.json();
-  //         }
-  //         // throw new Error('잘못된 접근입니다');
-  //       })
-  //       .then((data) => {
-  //         if (data.message === 'success') {
-  //           alert('Sims&co 가입을 축하합니다');
-  //           navigate('/');
-  //         } else {
-  //           alert('이미 가입한 회원입니다');
-  //         }
-  //       });
-  //   };
+  const gotoMain = () => {
+    fetch(`${API.signup}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ ...signupValue }),
+    })
+      .then((response) => {
+        if (response.ok === true) {
+          return response.json();
+        }
+        // throw new Error('잘못된 접근입니다');
+      })
+      .then((data) => {
+        if (data.message === 'success') {
+          alert('Sims&co 가입을 축하합니다');
+          navigate('/');
+        } else {
+          alert('이미 가입한 회원입니다');
+        }
+      });
+  };
 
   return (
     <div className="signup">
@@ -124,7 +125,7 @@ const Signup = () => {
           })}
         </form>
 
-        <button className="buttonStyle" disabled={!isValid}>
+        <button className="buttonStyle" disabled={!isValid} onClick={gotoMain}>
           가입 하기
         </button>
       </div>
