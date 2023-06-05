@@ -6,7 +6,7 @@ export const prefix = '/auth';
 
 export const signIn = async (args) => {
   const axios = initAxios();
-  return await axios.post(`${nameSpace}${prefix}`, {
+  return await axios.post(`${nameSpace}${prefix}/login`, {
     userLogin: args.userLogin,
     userPw: args.userPw,
   });
@@ -21,7 +21,7 @@ export const patchMyInfoFormData = async (args) => {
 
 export const signUp = async (args) => {
   const axios = initAxios();
-  return await axios.post(`${nameSpace}${prefix}oauth/Login`, args, {
+  return await axios.post(`${nameSpace}${prefix}/signin`, args, {
     name: args.name,
     birthdate: args.birthdate,
     email: args.email,
