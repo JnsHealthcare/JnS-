@@ -4,6 +4,7 @@ import SignupImageList from '../SingUpImage/SingUplmage';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { API } from '../config/config';
 import { useForm } from 'react-hook-form';
+import { signUp } from '../api/login';
 // import { API } from '../../config/config.js';
 
 import './SignUp.scss';
@@ -15,12 +16,9 @@ const Signup = () => {
     name: '',
     birthdate: '',
     phoneNumber: '',
-    address: '',
     email: '',
     password: '',
   });
-
-  console.log(signupValue);
 
   const getSignupValue = (e) => {
     const { id, value } = e.target;
@@ -56,26 +54,38 @@ const Signup = () => {
   //         });
   // };
 
-  const gotoMain = () => {
-    fetch(`${API.signup}`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ ...signupValue }),
-    })
-      .then((response) => {
-        if (response.ok === true) {
-          return response.json();
-        }
-        // throw new Error('잘못된 접근입니다');
-      })
-      .then((data) => {
-        if (data.message === 'success') {
-          alert('Sims&co 가입을 축하합니다');
-          navigate('/');
-        } else {
-          alert('이미 가입한 회원입니다');
-        }
-      });
+  // const gotoMain = () => {
+  //   fetch(`${API.signup}`, {
+  //     method: 'POST',
+  //     headers: { 'Content-Type': 'application/json' },
+  //     body: JSON.stringify({ ...signupValue }),
+  //   })
+  //     .then((response) => {
+  //       if (response.ok === true) {
+  //         return response.json();
+  //       }
+  //       // throw new Error('잘못된 접근입니다');
+  //     })
+  //     .then((data) => {
+  //       if (data.message === 'success') {
+  //         alert('Sims&co 가입을 축하합니다');
+  //         navigate('/');
+  //       } else {
+  //         alert('이미 가입한 회원입니다');
+  //       }
+  //     });
+  // };
+
+  const gotoMain = async (args) => {
+    const response = await signUp(args);
+    if (response.code === 'ERR_NETWORK') {
+      alert('회원가입에 실패하셨습니다.');
+    } else if (response.status === 200) {
+      alert('회원가입 성공');
+      localStorage.setItem('token', response.data.message);
+      navigate('/login');
+      // window.location.reload();
+    }
   };
 
   return (
