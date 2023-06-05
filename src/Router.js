@@ -14,12 +14,12 @@ const Router = () => {
     <BrowserRouter>
       <Nav />
       <Routes>
-        <Route path="/login" element={<Login />} />
         <Route path="/oauth/kakao/callback" element={<KakaoLogin />} />
         <Route path="/" element={<Main />} />
         <Route path="/footer" element={<Footer />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/products" element={<Login />} />
         {/* <Route path="/payment" element={<Payment />} /> */}
       </Routes>
       <Footer />

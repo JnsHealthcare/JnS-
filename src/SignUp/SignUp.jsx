@@ -76,8 +76,8 @@ const Signup = () => {
   //     });
   // };
 
-  const gotoMain = async (args) => {
-    const response = await signUp(args);
+  const gotoMain = (args) => {
+    const response = signUp(args);
     if (response.code === 'ERR_NETWORK') {
       alert('회원가입에 실패하셨습니다.');
     } else if (response.status === 200) {
