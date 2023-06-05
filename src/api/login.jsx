@@ -20,6 +20,7 @@ export const patchMyInfoFormData = async (args) => {
 };
 
 export const signUp = async (args) => {
+  console.log('Sign Up' , signUp)
   const axios = initAxios();
   return await axios.post(`${nameSpace}${prefix}/signin`, args, {
     name: args.name,
