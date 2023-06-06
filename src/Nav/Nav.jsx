@@ -11,11 +11,10 @@ import {
 import SideModal from '../SideModal/SideModal';
 import NavModal from '../NavModal/NavModal';
 import './nav.scss';
-import KakaoLogin from '../KakaoLogin/KakaoLogin';
-import LoginModal from '../KakaoLogin/LoginModal';
+// import KakaoLogin from '../KakaoLogin/KakaoLogin';
 import SideRModal from '../sideRmodal/SideRModal';
 
-export const baseURL = 'http://localhost:3001';
+// export const baseURL = 'http://localhost:3001';
 
 const interruptedRoute = ['signup', 'login'];
 

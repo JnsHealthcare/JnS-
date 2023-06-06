@@ -7,8 +7,8 @@ import { patchMyInfoFormData } from '../api/login';
 import { API } from '../config/config';
 
 export const API_KEY = '4ade0d3a8c815a692bf1d17a52c8819f';
-export const REDIRECT_URI = 'http://localhost:3001';
-export const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
+// export const REDIRECT_URI = 'http://localhost:3001';
+// export const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
 
 const SideRModal = ({
   className,
@@ -37,7 +37,8 @@ const SideRModal = ({
   };
   const close = useRef();
 
-  const hadleLogin = () => {
+  const hadleLogin = (e) => {
+    e.preventDefault();
     fetch(`${API.login}`, {
       method: 'POST',
       headers: { 'Content-type': 'application/json' },
@@ -46,9 +47,12 @@ const SideRModal = ({
       .then((response) => {
         return response.json();
       })
-      .then((data) => {
-        localStorage.setItem('TOKEN', data.accessToken);
-        alert('로그인에 성공했습니다');
+      .then((res) => {
+        if (res.message === '정상 처리') {
+          sessionStorage.setItem('TOKEN', res.data.token);
+          console.log(res.data.token);
+          console.log('1');
+        } else console.log('0');
       });
   };
 
@@ -56,7 +60,6 @@ const SideRModal = ({
     <aside className="sideModal2">
       <div className="sideModalTitle2">
         <button className="sideModalCloseButton2" onClick={modalClose}>
-          {/* <FontAwesomeIcon icon="fa-solid fa-xmark" size="lg" /> */}
           <h>x</h>
         </button>
       </div>
