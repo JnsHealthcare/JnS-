@@ -1,142 +1,18 @@
 import React, { useState } from 'react';
+import { Carousel } from '../Carousel/Carousel';
 import { useNavigate, Link } from 'react-router-dom';
+// import { Footer } from '../Footer/Footer';
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import { API } from '../../config/config';
 import './Login.scss';
 
 const Login = () => {
-  const [userLogin, setUserLogin] = useState({ email: '', password: '' });
-  const navigate = useNavigate();
-
-  const { email, password } = userLogin;
-  const emailRegex =
-    /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
-  const passwordRegex =
-    /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/;
-  const emailValueCheck = emailRegex.test(email);
-  const passwordValueCheck = passwordRegex.test(password);
-  const isUserTitle = emailValueCheck || passwordValueCheck;
-
-  const onUserInfoChange = (e) => {
-    const { name, value } = e.target;
-    setUserLogin({ ...userLogin, [name]: value });
-  };
-
-  // const hadleLogin = () => {
-  //   fetch(`${API.signin}`, {
-  //     method: 'POST',
-  //     headers: { 'Content-type': 'application/json' },
-  //     body: JSON.stringify({ ...userLogin }),
-  //   })
-  //     .then((response) => {
-  //       return response.json();
-  //     })
-  //     .then((data) => {
-  //       localStorage.setItem('TOKEN', data.accessToken);
-  //       alert('로그인에 성공했습니다');
-  //       navigate('/');
-  //     });
-  // };
-
   return (
-    <div className="login">
-      <div className="titleBox">
-        <div className="titleUseBox">
-          <div className="titleUseBoxWrapper">
-            <Link to="/">
-              <img
-                className="logoBox"
-                src="/images/Nav/Sims&co_logo.png"
-                alt="logoImage"
-              />
-            </Link>
+    <div>
+      <Carousel />
+      <Carousel />
 
-            <div
-              className="logoIcon"
-              onClick={() => {
-                navigate(-1);
-              }}
-            >
-              {/* <FontAwesomeIcon
-                className="fontAwesome"
-                icon="fa-solid fa-arrow-left"
-                size="lg"
-              /> */}
-            </div>
-          </div>
-
-          <div className="textBoxTitle">
-            {/* <h1 className="title">로그인</h1> */}
-            {/* <p className="titleText">
-              외워야 할 비밀번호가 많아 불편하셨죠?
-              <br />
-              이제 일회용 코드를 이용하여 간편하게 로그인하세요.
-              <br />
-              <br />
-              *이메일 또는 전화번호 최초 인증 후 사용 가능
-            </p> */}
-          </div>
-          {/* <p className="article">
-            <span>
-              semmelweis
-              <span className="underline"> 쿠키 정책, 개인정보처리방침</span>
-            </span>
-            <span>© Inter semmelweis Systems 042-545-4548</span>
-          </p> */}
-        </div>
-      </div>
-      <div className="loginBox">
-        <form className="inputForm">
-          <div className="loginInput">
-            <span className="lineInput">이메일</span>
-            <input
-              type="text"
-              className={
-                !isUserTitle && userLogin.email.length > 0
-                  ? 'inputId inputDisabled'
-                  : 'inputId'
-              }
-              name="email"
-              value={userLogin.email}
-              onChange={onUserInfoChange}
-            />
-            {!isUserTitle && userLogin.email.length > 0 ? (
-              <span className="noneTitle"> 이메일을 입력하세요</span>
-            ) : (
-              ''
-            )}
-          </div>
-          <div className="loginInput">
-            <span className="lineInput">비밀번호</span>
-            <input
-              type="password"
-              className={
-                !isUserTitle && userLogin.password.length > 0
-                  ? 'inputPassword  inputFail'
-                  : 'inputPassword '
-              }
-              name="password"
-              onChange={onUserInfoChange}
-              value={userLogin.password}
-            />
-          </div>
-          <button
-            className="loginBtn"
-            disabled={!isUserTitle}
-            // onClick={}
-          >
-            로그인
-          </button>
-          <button
-            className="joinBtn"
-            onClick={() => {
-              navigate('/signup');
-            }}
-          >
-            회원 가입
-          </button>
-        </form>
-      </div>
+      {/* <Footer /> */}
     </div>
   );
 };

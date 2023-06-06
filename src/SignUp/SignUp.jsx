@@ -11,10 +11,10 @@ import './SignUp.scss';
 
 const Signup = () => {
   const navigate = useNavigate();
-
+  console.log(`${API.signup}`);
   const [signupValue, setSignupValue] = useState({
     name: '',
-    birthdate: '',
+    birthDate: '',
     phoneNumber: '',
     email: '',
     password: '',
@@ -30,64 +30,40 @@ const Signup = () => {
     signupValue.email.includes('@') &&
     signupValue.password.length >= 8;
 
-  // const gotoMain = () => {
-  //   !isValid
-  //     ? alert('입력되지 않은 정보가 있습니다')
-  //     : fetch(API.signup, {
-  //         method: 'POST',
-  //         headers: { 'Content-Type': 'application/json;charset=utf-8' },
-  //         body: JSON.stringify({ signupValue }),
-  //       })
-  //         .then(response => {
-  //           if (response.ok === true) {
-  //             return response.json();
-  //           }
-  //           // throw new Error('잘못된 접근입니다');
-  //         })
-  //         .then(data => {
-  //           if (data.message === 'signup success') {
-  //             alert('Sims&co 가입을 축하합니다');
-  //             navigate('/');
-  //           } else {
-  //             alert('이미 가입한 회원입니다');
-  //           }
-  //         });
-  // };
+  console.log('sign : ', signupValue);
+  console.log('api: ', API.signup);
 
-  // const gotoMain = () => {
-  //   fetch(`${API.signup}`, {
-  //     method: 'POST',
-  //     headers: { 'Content-Type': 'application/json' },
-  //     body: JSON.stringify({ ...signupValue }),
-  //   })
-  //     .then((response) => {
-  //       if (response.ok === true) {
-  //         return response.json();
-  //       }
-  //       // throw new Error('잘못된 접근입니다');
-  //     })
-  //     .then((data) => {
-  //       if (data.message === 'success') {
-  //         alert('Sims&co 가입을 축하합니다');
-  //         navigate('/');
-  //       } else {
-  //         alert('이미 가입한 회원입니다');
-  //       }
-  //     });
-  // };
-
-  const gotoMain = async (args) => {
-    const response = await signUp(args);
-    if (response.code === 'ERR_NETWORK') {
-      alert('회원가입에 실패하셨습니다.');
-    } else if (response.status === 200) {
-      alert('회원가입 성공');
-      localStorage.setItem('token', response.data.message);
-      navigate('/login');
-      // window.location.reload();
-    }
+  const hadleLogin = () => {
+    fetch(`${API.signup}`, {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+      },
+      body: JSON.stringify({ ...signupValue }),
+    });
+    // .then((response) => {
+    //   return response.json();
+    // })
+    // .then((data) => {
+    //   // localStorage.setItem('TOKEN', data.accessToken);
+    //   alert('회원가입에 성공했습니다');
+    //   navigate('/');
+    // });
   };
 
+  // const gotoMain = (args) => {
+  //   const response = signUp(args);
+  //   if (response.code === 'ERR_NETWORK') {
+  //     alert('회원가입에 실패하셨습니다.');
+  //   } else if (response.status === 200) {
+  //     alert('회원가입 성공');
+  //     localStorage.setItem('token', response.data.message);
+  //     navigate('/login');
+  //     // window.location.reload();
+  //   }
+  // };
+  console.log(`${API.signup}`);
   return (
     <div className="signup">
       <div>
@@ -118,24 +94,22 @@ const Signup = () => {
       </div>
 
       <div className="inputContainerStyle">
-        <form>
-          {SIGNUP_INPUT_LIST.map((input) => {
-            return (
-              <div key={input.id}>
-                <div className="inputTitle">{input.title}</div>
-                <input
-                  type={input.type}
-                  className="inputItemStyle"
-                  id={input.name}
-                  value={signupValue[input.name]}
-                  onChange={getSignupValue}
-                />
-              </div>
-            );
-          })}
-        </form>
+        {SIGNUP_INPUT_LIST.map((input) => {
+          return (
+            <div key={input.id}>
+              <div className="inputTitle">{input.title}</div>
+              <input
+                type={input.type}
+                className="inputItemStyle"
+                id={input.name}
+                value={signupValue[input.name]}
+                onChange={getSignupValue}
+              />
+            </div>
+          );
+        })}
 
-        <button className="buttonStyle" disabled={!isValid} onClick={gotoMain}>
+        <button className="buttonStyle" onClick={hadleLogin}>
           가입 하기
         </button>
       </div>
@@ -155,19 +129,13 @@ const SIGNUP_INPUT_LIST = [
     id: 2,
     title: '생일',
     type: 'date',
-    name: 'birthdate',
+    name: 'birthDate',
   },
   {
     id: 3,
     title: '휴대폰',
     type: 'text',
     name: 'phoneNumber',
-  },
-  {
-    id: 5,
-    title: '주소',
-    type: 'text',
-    name: 'address',
   },
   {
     id: 6,
